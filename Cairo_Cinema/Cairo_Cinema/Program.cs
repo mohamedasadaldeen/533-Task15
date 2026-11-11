@@ -1,5 +1,7 @@
 using Cairo_Cinema.Data;
+using Cairo_Cinema.Utilities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cairo_Cinema
@@ -30,15 +32,21 @@ namespace Cairo_Cinema
             builder.Services.AddScoped<IRepository<Cinema>, Repository<Cinema>>();
             builder.Services.AddScoped<IRepository<Actor>, Repository<Actor>>();
             builder.Services.AddScoped<IMovieSubImageRepository, MovieSubImageRepository>();
+            builder.Services.AddTransient<IEmailSender, EmailSender>();
             //__________________________________________________________________
             //Identity
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true;
+                options.SignIn.RequireConfirmedEmail = true;
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+                options.Lockout.AllowedForNewUsers = true;
+                //options.SignIn.RequireConfirmedEmail = true;
             })
-            .AddEntityFrameworkStores<ApplicationDbContext>();   // the missing line
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
             //__________________________________________________________________
-
 
             var app = builder.Build();
 

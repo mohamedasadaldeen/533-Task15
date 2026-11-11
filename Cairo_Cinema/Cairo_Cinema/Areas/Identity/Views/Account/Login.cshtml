@@ -6,17 +6,17 @@
 
 <h1></h1>
 <br />
-<h4>Login User</h4>
+<h4>Login Page</h4>
 <hr />
 <br />
 <div class="cinema-filter-container">
     <div class="row">
         <div class="col-md-12">
-            <form asp-action="Register" method="post">
+            <form asp-action="Login" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <div class="form-group">
-                    <label asp-for="UserNameOrEmail" class="control-label"></label>
+                    <label asp-for="UserNameOrEmail" class="control-label">UserName Or Email</label>
                     <input asp-for="UserNameOrEmail" class="form-control" />
                     <span asp-validation-for="UserNameOrEmail" class="text-danger"></span>
                 </div>
@@ -44,6 +44,16 @@
             <div>
                 <a class="link-light" asp-action="Register">Register</a>
             </div>
+
+            <div>
+                <a class="link-warning" asp-action="ResendEmailConfirmation">Confirmation Email</a>
+            </div>
+
         </div>
     </div>
 </div>
+<br />
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <partial name="_NotificationPartial" />
+} 
