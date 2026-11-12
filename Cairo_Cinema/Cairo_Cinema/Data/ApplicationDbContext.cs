@@ -15,6 +15,8 @@ namespace Cairo_Cinema.Data
         public DbSet<Actor> Actors { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<MovieSubImage> MovieSubImages { get; set; }
+        public DbSet<ApplicationUserOtp> ApplicationUserOtps { get; set; }
+
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{

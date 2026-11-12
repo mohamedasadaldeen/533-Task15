@@ -31,6 +31,7 @@ namespace Cairo_Cinema
             builder.Services.AddScoped<IRepository<Category>, Repository<Category>>();
             builder.Services.AddScoped<IRepository<Cinema>, Repository<Cinema>>();
             builder.Services.AddScoped<IRepository<Actor>, Repository<Actor>>();
+            builder.Services.AddScoped<IRepository<ApplicationUserOtp>, Repository<ApplicationUserOtp>>();
             builder.Services.AddScoped<IMovieSubImageRepository, MovieSubImageRepository>();
             builder.Services.AddTransient<IEmailSender, EmailSender>();
             //__________________________________________________________________
